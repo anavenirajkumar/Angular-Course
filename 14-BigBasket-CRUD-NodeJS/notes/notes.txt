@@ -1,0 +1,104 @@
+---------------------------------------------------
+NGRX Configuration for Angular Routing Application
+----------------------------------------------------
+
+Install NGRX Librarires
+----------------------
+npm install @ngrx/store (Install)-----------
+npm install @ngrx/store-devtools  (Install)----------
+npm install @ngrx/effects  (Install)--------
+npm install @ngrx/schematics --save-dev  (Install)---------
+
+configure @ngrx/schematics with Angular CLI
+-------------------------------------------
+ng add @ngrx/schematics@latest   (Install)-----------
+
+Root (store , effect) (/src/app folder)
+---------------------------------------
+ng generate @ngrx/schematics:store State --root --module app.module.ts              (Install)----------> (Reducers)
+ng generate @ngrx/schematics:effect Root --root --module app.module.ts --group      (Install)-----------> (Effects)
+
+products(actions , reducers , effects) (products folder)
+--------------------------------------------------------
+
+Create a Product Module : ng generate module products --route products --module app.module (Install)----------
+
+ng generate @ngrx/schematics:store State --module products.module.ts  -------------(Install in Products Module / folder)----------> (Reducers)
+ng generate @ngrx/schematics:effect product --module products.module.ts --group  -------------(Install in Products Module)----------> (Effects)
+ng generate @ngrx/schematics:reducer product --group ----------------(Install in Products Module)----------this is installing in reducers folder 2 files
+ng generate @ngrx/schematics:action product --group ------------------(Install in Products Module)----------> Actions
+
+
+NOTE : change "reducers/index.ts" file with this for each module ----------------->
+import { environment } from '../../../environments/environment'; ----------------->
+import HttpClient, Forms Module in app.moduole,ts and product.module.ts----------->
+
+Flow START : ---> 
+
+ Write Services --> ng g s product
+ index.ts ( Connect product.reducer.ts in root folder index.ts)
+ Actions ---> product.actions.ts ---------------> 1 first write actions
+ (SetProducts in Reducer) product.reducer.ts ---> 2 second wrte reducers
+ Effects --> product.effects.ts ----------------> 3 third write effects
+ list-product.ts  --> Load products using NGRX
+ product.effects.ts --> Create Product
+ create-product.component.ts -->
+ product.effects.ts --> GetProduct
+ update-product.component.ts --> 
+ poduct.educer.ts --> selected product
+ product.effects.ts --> UpdateProduct
+ update-product.component.ts -->
+ product.effects.ts --> DeleteProduct
+ admin.component.ts -->
+ 
+  
+----------------------------------------------------------------------------------
+Folder Structure
+----------------------------------------------------------------------------------
+App
+---
+ -> root
+		-> components
+			-> home
+			-> navbar 
+ -> products(module)
+		-> components
+		-> services
+		-> models
+		-> actions
+		-> reducers
+		-> effects
+
+
+State :
+{
+	product : {
+		loading:boolean,
+		products : [],
+		selectedProduct: {}
+		errorMessage : string
+	}
+}
+
+Actions
+--------
+Get all products -> 3 actions
+get a single product -> 3 actions
+Create product -> 3 actions
+Update Product -> 3 actions
+Delete Product -> 3 actions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

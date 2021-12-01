@@ -1,0 +1,2 @@
+install : npm i json-server
+start : json-server db.json   ( server start)

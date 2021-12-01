@@ -1,0 +1,121 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+         <h1 style="color: aliceblue;">Angular CRUD</h1>
+         <div class="d-flex">
+             <button (click)="clickAddEmployee()" class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">Add Employee</button>
+         </div>
+    </div>
+ </nav>
+ <table class="table">
+     <thead>
+         <tr>
+             <th class="col">Employee ID</th>
+             <th class="col">First Name</th>
+             <th class="col">Last Name</th>
+             <th class="col">Email ID</th>
+             <th class="col">Mobile ID</th>
+             <th class="col">Salary</th>
+             <th class="col">Actions</th>
+         </tr>
+     </thead>
+     <tbody>
+         <!-- {{employees | json}} -->
+          <tr *ngFor="let emp of employees">
+             <td>{{emp.id}}</td>
+              <td>{{emp.fname}}</td>
+              <td>{{emp.lname}}</td>
+              <td>{{emp.email}}</td>
+              <td>{{emp.mobile}}</td>
+              <td>{{emp.salary}}</td>
+             <td>
+                 <button class="btn btn-primary" (click)="onEdit(emp)" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                 <button class="btn btn-danger" (click)="deleteEmployee(emp)">Delete</button>
+ 
+             </td>
+          </tr>
+     </tbody>
+ </table>
+ 
+ <!-- Button trigger modal -->
+   
+   <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel">Employee Details</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <form [formGroup]="exform">
+                 <div class="form-group">
+                   <label class="col-form-label">First Name</label>
+                   <input formControlName="fname" type="text" placeholder="First Name" pattern="[a-zA-Z ]*" class="form-control " 
+                   [class.is-invalid]="fname().touched && fname().invalid"
+                   [class.is-valid]="fname().touched && fname().valid"
+                   />
+                   <small *ngIf="fname().invalid && fname().touched" class="text-danger">First Name is Required</small
+                   >
+                 </div>
+                 <div class="form-group">
+                     <label class="col-form-label">Last Name</label>
+                     <input formControlName="lname" type="text" placeholder="Last Name" pattern="[a-zA-Z ]*" class="form-control " 
+                     [class.is-invalid]="lname().touched && lname().invalid"
+                     [class.is-valid]="lname().touched && lname().valid"
+                     />
+                     <small *ngIf="lname().invalid && lname().touched" class="text-danger">Last Name is Required</small
+                     >
+                   </div>
+                
+                 <div class="form-group">
+                   <label class="col-form-label">Email</label>
+                   <input formControlName="email" type="text" placeholder="Email" class="form-control"
+                   [class.is-invalid]="email().touched && email().invalid"
+                   [class.is-valid]="email().touched && email().valid"
+                   />
+                   <small *ngIf="email().invalid && email().touched" class="text-danger"
+                     >Email is Required</small
+                   >
+                 </div>
+                 <div class="form-group">
+                   <label class="col-form-label">Mobile</label>
+                   <input formControlName="mobile" type="number" maxlength="10" placeholder="Mobile Number" class="form-control" 
+                   [class.is-invalid]="mobile().touched && mobile().invalid"
+                   [class.is-valid]="mobile().touched && mobile().valid"
+                   />
+                   <small *ngIf="mobile().invalid && mobile().touched" class="text-danger"
+                     >Phone no is Required(minimum length 10,numbers are only
+                     allowed)</small
+                   >
+                 </div>
+ 
+                 <div class="form-group">
+                     <label class="col-form-label">Salary</label>
+                     <input formControlName="salary" type="number"  placeholder="Enter Salary" class="form-control" 
+                     [class.is-invalid]="salary().touched && salary().invalid"
+                     [class.is-valid]="salary().touched && salary().valid"
+                     />
+                     <small *ngIf="salary().invalid && salary().touched" class="text-danger"
+                       >Salary is Required</small
+                     >
+                   </div>
+         
+             
+                 <!-- <button
+                   (click)="clicksub()"
+                   type="button"
+                   class="btn btn-primary mt-4"
+                 >
+                   Submit
+                 </button> -->
+               </form>
+         </div>
+         <div class="modal-footer">
+           <button type="button" id="cancel"class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+           <button type="button" *ngIf="showAdd" (click) ="postEmployeeDetails()" class="btn btn-primary">Add</button>
+           <button class="btn btn-danger"  *ngIf="showUpdate"(click)="updateEmployeeDetails()">Update</button>
+ 
+         </div>
+       </div>
+     </div>
+   </div>

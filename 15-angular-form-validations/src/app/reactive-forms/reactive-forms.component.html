@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-6  round pb-3">
+      <h1 class="text-center pt-3 text-secondary">Reactive Form Validation</h1>
+      <form [formGroup]="exform">
+        <div class="form-group">
+          <label class="col-form-label">Name:</label>
+          <input formControlName="name" type="text" placeholder="Name" pattern="[a-zA-Z ]*" class="form-control " 
+          [class.is-invalid]="name().touched && name().invalid"
+          [class.is-valid]="name().touched && name().valid"
+          />
+          <small *ngIf="name().invalid && name().touched" class="text-danger">Name is Required</small
+          >
+        </div>
+       
+        <div class="form-group">
+          <label class="col-form-label">Email:</label>
+          <input formControlName="email" type="text" placeholder="Email" class="form-control"
+          [class.is-invalid]="email().touched && email().invalid"
+          [class.is-valid]="email().touched && email().valid"
+          />
+          <small *ngIf="email().invalid && email().touched" class="text-danger"
+            >Email is Required</small
+          >
+        </div>
+        <div class="form-group">
+              <label class="col-form-label">Password</label>
+              <input type="password" class="form-control"
+              [class.is-invalid]="password().touched && password().invalid"
+              [class.is-valid]="password().touched && password().valid"
+              formControlName="password"
+              placeholder="Password">
+        </div>
+        <!-- <div class="form-group">
+          <label class="col-form-label">Password</label>
+          <input type="password"
+          [class.is-invalid]="conformpassword().touched && conformpassword().invalid"
+          [class.is-valid]="conformpassword().touched && conformpassword().valid"
+          formControlName="conformpassword"
+          class="form-control" placeholder="Confirm Password">
+        </div> -->
+        <div class="form-group">
+          <label class="col-form-label">Phone</label>
+          <input formControlName="phone" type="number" maxlength="10" placeholder="Mobile Number" class="form-control" 
+          [class.is-invalid]="phone().touched && phone().invalid"
+          [class.is-valid]="phone().touched && phone().valid"
+          />
+          <small *ngIf="phone().invalid && phone().touched" class="text-danger"
+            >Phone no is Required(minimum length 10,numbers are only
+            allowed)</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">Select Date</label>
+          <input formControlName="date" id="date" type="date"  class="form-control"
+          [class.is-invalid]="date().touched && date().invalid"
+          [class.is-valid]="date().touched && date().valid"
+          />
+          <small *ngIf="date().invalid && date().touched" class="text-danger">Date is Required</small
+           >
+          
+     </div>
+
+        <div class="form-group">
+          <label class="col-form-label">Select Cource</label>
+          <select
+            formControlName="course"
+            [class.is-invalid]="getCourse().touched && getCourse().invalid"
+            [class.is-valid]="getCourse().touched && getCourse().valid"
+            class="form-control">
+            <option value="">Choose</option>
+            <option *ngFor="let course of courses" [value]="course">{{course}}</option>
+          </select>
+          <div *ngIf="getCourse().touched && getCourse().invalid">
+            <small class="text-danger">Select a Course</small>
+          </div>
+          <small *ngIf="getCourse().touched && getCourse().valid" class="text-success">
+            Looks Good
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">Address</label>
+          <textarea formControlName="address" class="form-control" placeholder="Enter Your Perminent Address"
+          [class.is-invalid]="address().touched && address().invalid"
+          [class.is-valid]="address().touched && address().valid"
+          ></textarea>
+          <small *ngIf="address().invalid && address().touched" class="text-danger">
+            Address is Required(minimum length 20)</small
+          >
+        </div>
+
+
+        <div class="form-group">
+          <input type="checkbox" (change)="remember($event)" >
+          &nbsp;<label class="col-form-label"> Remember</label>
+
+       </div>
+
+       <div class="form-group">
+        <label class="col-form-label">Address 2</label>
+        <textarea 
+        formControlName="address2" 
+        [value]="this.exform.address2"
+        class="form-control" placeholder="Enter Your Perminent Address"
+       
+        ></textarea>
+    
+      </div>
+
+        <div class="form-group">
+          <input type="radio" value="male" formControlName="gender"  > Male
+          <input type="radio" value="female"  formControlName="gender"  > Female
+
+          <small *ngIf="gender().invalid && gender().touched" class="text-danger">
+            Gender required. </small
+          >
+        </div>
+
+        <!-- {{isTCAccepted | json}} -->
+        <div class="form-group">
+           <input type="checkbox" formControlName="isTCAccepted"
+           [class.is-invalid]="isTCAccepted().touched && isTCAccepted().invalid"
+           [class.is-valid]="isTCAccepted().touched && isTCAccepted().valid"
+           >
+           &nbsp;<label class="col-form-label"> Accept</label>
+
+           <br><small *ngIf="isTCAccepted().invalid && isTCAccepted().touched" class="text-danger">
+           Please Accept Terms & Conditions</small
+          >
+
+        </div>
+       
+        <!-- <div class="form-group ">
+          <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
+          [class.is-invalid]="acceptTerms().touched && acceptTerms().invalid"
+          [class.is-valid]="acceptTerms().touched && acceptTerms().valid"
+          />
+          <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+          <small *ngIf="acceptTerms().invalid && acceptTerms().touched" class="text-danger">
+            Accept Ts & Cs is required</small
+          >
+      </div> -->
+        <button
+          (click)="clicksub()"
+          type="button"
+          class="btn btn-primary mt-4"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
