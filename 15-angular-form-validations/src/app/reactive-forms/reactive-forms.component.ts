@@ -8,6 +8,7 @@ import { FormGroup,Validators, FormControl } from '@angular/forms';
 export class ReactiveFormsComponent implements OnInit {
 
   exform: FormGroup | any;
+  
   // submitted = false;
 
   public courses:string[]=['html','css','javascript','bootstrap','angular','reactjs']
@@ -18,7 +19,7 @@ export class ReactiveFormsComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       date : new FormControl('', [Validators.required]),
       password : new FormControl('',[Validators.required, Validators.minLength(8)]),
-      // conformpassword : new FormControl('', [Validators.required, Validators.minLength(8)]),
+      conformpassword : new FormControl('', [Validators.required, Validators.minLength(8)]),
       phone: new FormControl('', [
         Validators.required,
         Validators.pattern(
@@ -30,7 +31,8 @@ export class ReactiveFormsComponent implements OnInit {
         Validators.required,
         Validators.minLength(20),
       ]),
-      address2: new FormControl(''),
+      address2: new FormControl(),
+      AdreessCheckbox: new FormControl(false),
       course : new FormControl('',[Validators.required]),
       gender: new FormControl('', Validators.required),
       isTCAccepted: new FormControl('', Validators.requiredTrue)
@@ -42,7 +44,8 @@ export class ReactiveFormsComponent implements OnInit {
     //debugger;
         // console.log(this.exform.value);
     this.exform.markAllAsTouched();
-    if(this.exform.valid){
+    if(this.exform.valid && this.validatePassord()){
+      //this.exform.value.password === this.exform.value.conformpassword;
       console.log(this.exform.value)
       this.exform.reset();
     }
@@ -58,9 +61,17 @@ export class ReactiveFormsComponent implements OnInit {
   public password(){
     return this.exform.get('password')
   }
-  // public conformpassword(){
-  //   return this.exform.get('conformpassword')
-  // }
+  public conformpassword(){
+    return this.exform.get('conformpassword')
+  }
+
+  public validatePassord(){
+    console.log(this.exform.value.password);
+    console.log(this.exform.value.conformpassword)
+    console.log(this.exform.value.password === this.exform.value.conformpassword)
+
+    return this.exform.value.password === this.exform.value.conformpassword;
+  }
   public phone() {
     return this.exform.get('phone');
   }
@@ -90,10 +101,21 @@ export class ReactiveFormsComponent implements OnInit {
 
   public remember(e:any){
     if(e.target.checked){
-      this.exform.address2 = this.exform.value.address;
-      console.log(this.exform.address2)
+      // this.exform.address2 = this.exform.value.address;
+      // console.log(this.exform.address2)
+      this.exform.get('address2').setValue(this.exform.value.address);
    }else{
-    this.exform.address2 = ''
+    // this.exform.address2 = '';
+    this.exform.get('address2').setValue('');
+
    }
   }
+
+  // public everykeyord(e:any){
+  //   // this.exform.get('address2').setValue(this.exform.value.address);
+  //   this.exform.get('address2').setValue(this.exform.value.address);
+
+  //   //this.exform.address2 = this.exform.value.address;
+   
+  // }
 }

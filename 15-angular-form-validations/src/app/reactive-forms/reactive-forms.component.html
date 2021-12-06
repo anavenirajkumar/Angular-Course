@@ -31,14 +31,17 @@
               formControlName="password"
               placeholder="Password">
         </div>
-        <!-- <div class="form-group">
-          <label class="col-form-label">Password</label>
-          <input type="password"
-          [class.is-invalid]="conformpassword().touched && conformpassword().invalid"
-          [class.is-valid]="conformpassword().touched && conformpassword().valid"
+        <div class="form-group">
+          <label class="col-form-label">Conirm Password</label>
+          <input type="password" 
+          [class.is-invalid]="conformpassword().touched && !validatePassord()"
+          [class.is-valid]="conformpassword().touched && validatePassord()"
           formControlName="conformpassword"
           class="form-control" placeholder="Confirm Password">
-        </div> -->
+          <small *ngIf="conformpassword().touched && !validatePassord()" class="text-danger">
+            Password doesn't matched</small
+          >
+        </div>
         <div class="form-group">
           <label class="col-form-label">Phone</label>
           <input formControlName="phone" type="number" maxlength="10" placeholder="Mobile Number" class="form-control" 
@@ -84,8 +87,10 @@
           <label class="col-form-label">Address</label>
           <textarea formControlName="address" class="form-control" placeholder="Enter Your Perminent Address"
           [class.is-invalid]="address().touched && address().invalid"
-          [class.is-valid]="address().touched && address().valid"
+          [class.is-valid]="address().touched && address().valid" 
           ></textarea>
+          <!-- (change)="everykeyord($event)" -->
+
           <small *ngIf="address().invalid && address().touched" class="text-danger">
             Address is Required(minimum length 20)</small
           >
@@ -93,7 +98,7 @@
 
 
         <div class="form-group">
-          <input type="checkbox" (change)="remember($event)" >
+          <input type="checkbox" (change)="remember($event)" formControlName="AdreessCheckbox">
           &nbsp;<label class="col-form-label"> Remember</label>
 
        </div>
@@ -101,8 +106,7 @@
        <div class="form-group">
         <label class="col-form-label">Address 2</label>
         <textarea 
-        formControlName="address2" 
-        [value]="this.exform.address2"
+        formControlName="address2"
         class="form-control" placeholder="Enter Your Perminent Address"
        
         ></textarea>
@@ -131,18 +135,8 @@
           >
 
         </div>
-       
-        <!-- <div class="form-group ">
-          <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
-          [class.is-invalid]="acceptTerms().touched && acceptTerms().invalid"
-          [class.is-valid]="acceptTerms().touched && acceptTerms().valid"
-          />
-          <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
-          <small *ngIf="acceptTerms().invalid && acceptTerms().touched" class="text-danger">
-            Accept Ts & Cs is required</small
-          >
-      </div> -->
         <button
+       
           (click)="clicksub()"
           type="button"
           class="btn btn-primary mt-4"
