@@ -1,0 +1,269 @@
+
+<!-- <app-score></app-score> -->
+<!-- <app-accordions></app-accordions> -->
+<!-- <app-menu></app-menu> -->
+ <app-questions></app-questions>
+
+<!-- 
+<div class="container mt-5" style="box-shadow: 0 0 3px black;">
+  <div class="row"></div>
+    <h5 style="font-weight: bold;" class="mt-4">Surgical Details</h5>
+    <div class="row ml-2 mt-3">
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">Elective</mat-radio-button> &nbsp;  &nbsp; &nbsp;
+        <mat-radio-button value="2">Emergency</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="row ml-2 mt-2">
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">Cancer</mat-radio-button>  &nbsp;  &nbsp; &nbsp;&nbsp;
+        <mat-radio-button value="2">Non-Cancer</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="row ml-2 mt-2">
+      <section class="example-section">
+        <mat-checkbox class="example-margin">Stagging</mat-checkbox> &nbsp;  &nbsp;
+        <mat-checkbox class="example-margin">Preventative</mat-checkbox>  &nbsp;  &nbsp;
+        <mat-checkbox class="example-margin">Supportive</mat-checkbox> &nbsp;  &nbsp;
+        <mat-checkbox class="example-margin">Unrelated</mat-checkbox>  &nbsp;  &nbsp;
+        <mat-checkbox class="example-margin">Diagnostic</mat-checkbox> &nbsp;  &nbsp;
+        <mat-checkbox class="example-margin">Curative</mat-checkbox>  &nbsp;  &nbsp;
+        <mat-checkbox class="example-margin">Debulking</mat-checkbox> &nbsp;  &nbsp;
+        <mat-checkbox class="example-margin mb-2">Palliative</mat-checkbox>
+      </section>
+    </div>
+  </div>
+
+
+  <div class="container mt-5" style="box-shadow: 0 0 3px black;">
+    <div class="row"></div>
+    <h5 style="font-weight: bold;" class="mt-4">Duration</h5>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1" class=" ml-2">Less than 1 hour</mat-radio-button> <br/>
+        <mat-radio-button value="2" class=" ml-2">1-2 hours</mat-radio-button>  <br/>
+        <mat-radio-button value="1" class=" ml-2">2-4 hours</mat-radio-button> <br/>
+        <mat-radio-button value="2" class="mb-2 ml-2">More than 4 hours</mat-radio-button>
+      </mat-radio-group>
+  </div>
+
+  <div class="container mt-5" style="box-shadow: 0 0 3px black;">
+    <div class="row"></div>
+    <h5 style="font-weight: bold;" class="mt-4">Incition</h5>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1" class="ml-2">Upper Abdominal</mat-radio-button> &nbsp;
+      </mat-radio-group>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="2"  class="ml-2">Lower Abdominal</mat-radio-button> &nbsp;
+      </mat-radio-group>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1"  class="ml-2">Intrathoracic</mat-radio-button> &nbsp;
+      </mat-radio-group>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="2"  class="ml-2">Peripheral(limbs)</mat-radio-button> &nbsp;
+      </mat-radio-group>
+
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1"  class="ml-2">Head and Neck</mat-radio-button> &nbsp;
+      </mat-radio-group>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="2"  class="ml-2">Skull</mat-radio-button> &nbsp;
+      </mat-radio-group>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1" class="mb-2 ml-2">Laparoscopic(keyhole)</mat-radio-button> &nbsp;
+      </mat-radio-group>
+  </div>
+
+
+
+
+  <div  class= "container mt-4" style="box-shadow: 0 0 3px black">
+    <div class="row"></div>
+
+    <h5 style="font-weight: bold" class="mt-4">Class Of Surgery</h5> 
+    <mat-radio-group aria-label="Select an option">
+
+          <div class="row mt-4"> 
+             <div class="col-md-2  ml-8"> 
+              <mat-radio-button value="1" class="ml-2" style="font-weight: bold;">Class-1</mat-radio-button>
+             </div>
+
+             <div class="col-md-4 ">
+                 Minimally Invasive,<br/> Little/No Blood Loss
+             </div>
+
+              <div class="col-md-5">
+                    Ex: Breast Biopsy, Cystoscopy
+             </div>
+          </div>
+          <div class="row mt-2"> 
+            <div class="col-md-2 ml-8"> 
+             <mat-radio-button value="2"  class="ml-2" style="font-weight: bold;">Class-2</mat-radio-button>
+            </div>
+
+            <div class="col-md-4 ">
+              Minimal-Moderate Invasive, <br/>Blood loss less than 500ml
+            </div>
+
+             <div class="col-md-5">
+              Ex: Diagnostic Laparoscopy, Hernia Repair, Septoplasty
+            </div>
+         </div>
+         <div class="row mt-2"> 
+          <div class="col-md-2 ml-8"> 
+           <mat-radio-button value="3"  class="ml-2" style="font-weight: bold;">Class-3</mat-radio-button>
+          </div>
+
+          <div class="col-md-4 ">
+            Moderate to Significantly Invasive,<br/> Blood loss 500-1500 ml
+          </div>
+
+           <div class="col-md-5">
+            Ex: Hysterectomy, Cholecystectomy, Primary Joint replacement, Major Laparoscopic Resection of GI tract
+          </div>
+       </div>
+       <div class="row mt-2"> 
+        <div class="col-md-2 ml-8"> 
+         <mat-radio-button value="4"  class="ml-2" style="font-weight: bold;">Class-4</mat-radio-button>
+        </div>
+
+        <div class="col-md-4 ">
+          Highly Invasive,<br/> Blood Loss more than 1500 ml	
+        </div>
+
+         <div class="col-md-5">
+          Ex: Redo Joint Replacement, Spinal Reconstruction, Major Reconstruction of GI tract, Major Vascular  
+        </div>
+     </div>
+     <div class="row  mt-2"> 
+      <div class="col-md-2 ml-8"> 
+       <mat-radio-button value="5"  class="ml-2" style="font-weight: bold;">Class-5</mat-radio-button>
+      </div>
+
+      <div class="col-md-4 mb-4 ">
+        Highly Invasive,<br/> Blood loss more than 1500 ml
+      </div>
+
+       <div class="col-md-5 ">
+        Ex: Cardiac, Intracranial Procedure, Major Oropharynx free flap procedures
+      </div>
+   </div>
+
+    </mat-radio-group>
+  </div>
+  
+
+  
+  <div class= "container mt-4"  style="box-shadow: 0 0 3px black;">
+    <div class="row mb-4"></div>
+    <mat-radio-group aria-label="Select an option">
+
+          <div class="row"> 
+             <div class="col-md-2 ml-8"> 
+              <mat-radio-button value="1" style="font-weight: bold;">ASA I</mat-radio-button>
+             </div>
+
+             <div class="col-md-4 ">
+              A normal healthy patient
+             </div>
+
+              <div class="col-md-5">
+                Healthy, non-smoking, no or minimal alcohol use
+             </div>
+          </div>
+          <div class="row mt-2"> 
+            <div class="col-md-2 ml-8"> 
+             <mat-radio-button value="2" style="font-weight: bold;">ASA II</mat-radio-button>
+            </div>
+
+            <div class="col-md-4 ">
+              A patient with mild systemic disease
+            </div>
+
+             <div class="col-md-5">
+              Mild diseases only without substantive functional
+              limitations. Examples include (but not limited to):
+              current smoker, social alcohol drinker, pregnancy, obesity
+              (30 < BMI 40), well-controlled DM/HTN, mild lung disease
+            </div>
+         </div>
+         <div class="row mt-2"> 
+          <div class="col-md-2 ml-8"> 
+           <mat-radio-button value="3" style="font-weight: bold;">ASA III</mat-radio-button>
+          </div>
+
+          <div class="col-md-4 ">
+            A patient with severe systemic disease
+          </div>
+
+           <div class="col-md-5">
+            Substantive functional limitations; One or more moderate
+                      to severe diseases. Examples include (but not limited to):
+                      poorly controlled DM or HTN, COPD, morbid obesity (BMI
+                      ≥40), active hepatitis, alcohol dependence or abuse,
+                      implanted pacemaker, moderate reduction of ejection
+                      fraction, ESRD undergoing regularly scheduled dialysis,
+                      premature infant PCA 60 weeks, history (>3 months) of MI,
+                      CVA, TIA, or CAD/stents.
+          </div>
+       </div>
+       <div class="row mt-2"> 
+        <div class="col-md-2 ml-8"> 
+         <mat-radio-button value="4" style="font-weight: bold;">ASA IV</mat-radio-button>
+        </div>
+
+        <div class="col-md-4 ">
+          A patient with severe systemic disease that is a constant
+          threat to life
+        </div>
+
+         <div class="col-md-5">
+          Examples include (but not limited to): recent ( 3 months)
+          MI, CVA, TIA, or CAD/stents, ongoing cardiac ischemia or
+          severe valve dysfunction, severe reduction of ejection
+          fraction, sepsis, DIC, ARD or ESRD not undergoing
+          regularly scheduled dialysis
+        </div>
+     </div>
+     <div class="row mt-2"> 
+      <div class="col-md-2 ml-8"> 
+       <mat-radio-button value="5" style="font-weight: bold;">ASA V</mat-radio-button>
+      </div>
+
+      <div class="col-md-4 ">
+        A moribund patient who is not expected to survive without
+        the operation
+      </div>
+
+       <div class="col-md-5">
+        Examples include (but not limited to): ruptured
+        abdominal/thoracic aneurysm, massive trauma, intracranial
+        bleed with mass effect, ischemic bowel in the face of
+        significant cardiac pathology or multiple organ/system
+        dysfunction
+      </div>
+   </div>
+
+   <div class="row mt-2"> 
+    <div class="col-md-2 ml-8"> 
+     <mat-radio-button value="6" style="font-weight: bold;">ASA VI</mat-radio-button>
+    </div>
+
+    <div class="col-md-10 ">
+      declared brain-dead patient whose organs are being
+      removed for donor purposes
+    </div>
+ </div>
+
+    </mat-radio-group>
+  </div>
+
+
+  <div class="container mt-4">
+       <div class="row"> 
+
+       </div>
+  </div>
+
+   -->
