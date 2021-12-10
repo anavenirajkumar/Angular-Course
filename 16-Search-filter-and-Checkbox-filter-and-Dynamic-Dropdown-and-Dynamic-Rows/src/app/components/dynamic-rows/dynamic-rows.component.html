@@ -1,0 +1,99 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <h3>Reactive Forms Validations</h3>  
+            <h5>{{showValue}}</h5>
+          <form [formGroup]="form" (ngSubmit)="submitForm()">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input type="text"
+                formControlName="name"
+                class="form-control"
+                [class.is-invalid]="form.get('name').touched && form.get('name').invalid"
+                [class.is-valid]="form.get('name').touched && form.get('name').valid"
+                 id="exampleInputEmail1" aria-describedby="emailHelp">
+                <span *ngIf="form.get('name').touched && form.get('name').hasError('required')" class="form-text">Please Enter Name</span>
+                <span *ngIf="form.get('name').touched && form.get('name').hasError('name')" class="form-text">Please Enter Proper Name</span>
+                <span *ngIf="form.get('name').touched && form.get('name').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+                <span *ngIf="form.get('name').touched && form.get('name').valid" class="form-text">Looks Good</span>
+  
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email"
+                formControlName="email"
+                class="form-control"
+                [class.is-invalid]="form.get('email').touched && form.get('email').invalid"
+                [class.is-valid]="form.get('email').touched && form.get('email').valid"
+                 id="exampleInputEmail1" aria-describedby="emailHelp">
+                <span *ngIf="form.get('email').touched && form.get('email').hasError('required')" class="form-text">Please Enter Email</span>
+                <span *ngIf="form.get('email').touched && form.get('email').hasError('email')" class="form-text">Please Enter Proper Email</span>
+                <span *ngIf="form.get('email').touched && form.get('email').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+                <span *ngIf="form.get('email').touched && form.get('email').valid" class="form-text">Looks Good</span>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Designation</label>
+                <input type="text"
+                formControlName="designation"
+                class="form-control"
+                [class.is-invalid]="form.get('designation').touched && form.get('designation').invalid"
+                [class.is-valid]="form.get('designation').touched && form.get('designation').valid"
+                 id="exampleInputEmail1" aria-describedby="emailHelp">
+                <span *ngIf="form.get('designation').touched && form.get('designation').hasError('required')" class="form-text">Please Enter Designation</span>
+                <span *ngIf="form.get('designation').touched && form.get('designation').hasError('minlength')" class="form-text">Minimum 10 Characters</span>
+                <span *ngIf="form.get('designation').touched && form.get('designation').valid" class="form-text">Looks Good</span>
+              </div>
+
+              <div class="mb-3 form-check">
+                <input type="checkbox"
+                formControlName="terms"
+                class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Terms & Conditions</label> <br>
+                <span *ngIf="form.get('terms').touched && form.get('terms').hasError('required')" class="text-danger">Please Check the Checkbox</span>
+
+              </div>
+  
+              <!-- <div class="form-group row" >
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Items</label>
+                   <div class="col-sm-10" formArrayName="items">
+                       <div *ngFor="let item of form.controls.items['controls']; let i=index">
+                          <input class="form-control" type="text" [formControlName]="i" id="task{{i}}">
+                      </div>
+  
+                   </div>
+              </div> -->
+  
+               <div class="form-group row" >
+                  <label for="col-form-label" class="col-sm-2 col-form-label">Item Id</label>
+                   <div class="col-sm-10" formArrayName="items">
+                       <div *ngFor="let item of form.controls.items['controls']; let i=index" [formGroupName]="i">
+                          <input class="form-control" type="text" formControlName="itemId" id="task{{i}}">
+                          <!-- <input class="form-control" type="text" formControlName="itemName" id="task{{i}}">
+                          <input class="form-control" type="text" formControlName="itemDesc" id="task{{i}}"> -->
+                          <input type="checkbox" formControlName="itemDone"  class="mt-4">Mark s Done 
+                          <button type="submit"
+                          class="btn btn-primary mt-4" (click)="removeRow(i)">Remove Row</button>
+                      </div>
+  
+                   </div>
+              </div>
+              
+              <button type="submit"
+              class="btn btn-primary mt-4">Submit</button> &nbsp;&nbsp;&nbsp;
+              
+              <button type="submit"
+              class="btn btn-primary mt-4" (click)="resetForm()">Reset</button>
+              &nbsp;&nbsp;&nbsp;
+  
+              <button type="submit"
+              class="btn btn-primary mt-4" (click)="addNewRow()">Add Row</button>
+              &nbsp;&nbsp;&nbsp;
+  
+             
+  
+            </form>
+        </div>
+    </div>
+  </div>

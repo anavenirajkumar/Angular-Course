@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-5 m-auto">
+        <div class="form-group">
+            <input type="text"
+            placeholder="Search Technology" 
+            class="form-control"
+            name="searchFilter"
+            [(ngModel)]="searchFilter"
+            >
+
+           <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label"> Select All </label>
+                  <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [(ngModel)]="selectAll"
+                  [value]="-1"
+                  (change)="checkFilter($event)"
+                  >
+              </div>
+            <div class="form-check" *ngFor="let opt of options | filter : searchFilter ;">
+              <label class="form-check-label" for="tag{{opt.value}}">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  (change)="checkFilter($event)"
+                  name="checkbox"
+                  [value]="opt.id"
+                  [checked]="opt.select"
+                  >
+                {{opt.name}}
+              </label>
+            </div>
+          </div>
+          </div>
+        </div>
+    </div>
+</div>

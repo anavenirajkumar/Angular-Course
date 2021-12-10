@@ -1,0 +1,49 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text"
+                 placeholder="Search Employee" 
+                 class="form-control"
+                 name="searchFilter"
+                 [(ngModel)]="searchFilter"
+                 >
+               <!-- (ngModelChange)="Search()" -->
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+     <div class="col-md-12">
+       <table class="table text-center table-striped table-hover">
+           <thead class="bg-danger">
+             <tr>
+               <th>SNO</th>
+               <th>NAME &nbsp;<i class="fas fa-sort"></i></th>
+               <th>EMAIL</th>
+               <th>PHONE</th>
+               <th>LOCATION</th>
+               <th>ID</th>
+             </tr>
+           </thead>
+           <!-- {{contacts | json}} -->
+           <tbody class="bg-secondary">
+             <tr *ngFor="let contact of contacts | filter:searchFilter; let i = index">
+               <!-- <a routerLink="/{{contact.id.value}}"> -->
+                   <td >{{i + 1}}</td> 
+               <!-- </a> -->
+               <td>{{contact.name.first}} </td>
+               <td>{{contact.email}}</td>
+               <td>{{contact.phone}}</td>
+               <td>{{contact.location.city}}</td>
+               <td>{{contact.id.value}}</td>
+             </tr>
+             <!-- <tr *ngIf="errorMessage">
+               <td class="text-danger" colspan="5">
+                 {{errorMessage}}
+               </td>
+             </tr> -->
+           </tbody>
+         </table>
+     </div>
+    </div>
+   </div>
