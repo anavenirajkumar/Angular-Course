@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card-container">
+    <label for="col-form-label">Country</label>
+    <select  class="form-control" placeholder="Country"  (change)="changeCountry($event)"> 
+        <option value="">{{selectedCountry}}</option>
+        <option *ngFor="let country of Countries" [value]="country.id">{{country.name}}</option>
+    </select>
+</div>
+
+<div class="card-container" *ngIf="showStates">
+    <label for="col-form-label">State</label>
+    <select class="form-control" placeholder="State" (change)="changeState($event)"> 
+        <option value="">{{selectedState}}</option>
+        <option *ngFor="let state of states" [value]="state.country_code">{{state.name}}</option>
+    </select>
+</div>
+
+<div class="card-container" *ngIf="showCities">
+    <label for="col-form-label">City</label>
+    <select class="form-control" placeholder="City">
+        <option value="">--Choose City--</option>
+        <option *ngFor="let city of cities">{{city.name}}</option>
+    </select>
+</div>
+</div>

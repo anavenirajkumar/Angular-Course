@@ -7,6 +7,7 @@
                  class="form-control"
                  name="searchFilter"
                  [(ngModel)]="searchFilter"
+                 (input)="Search()"
                  >
                <!-- (ngModelChange)="Search()" -->
             </div>
@@ -26,8 +27,9 @@
              </tr>
            </thead>
            <!-- {{contacts | json}} -->
-           <tbody class="bg-secondary">
-             <tr *ngFor="let contact of contacts | filter:searchFilter; let i = index">
+           <!-- <tr *ngFor="let contact of SearchData  let i = index"> -->
+            <tbody class="bg-secondary">
+             <tr *ngFor="let contact of SearchData  let i = index">
                <!-- <a routerLink="/{{contact.id.value}}"> -->
                    <td >{{i + 1}}</td> 
                <!-- </a> -->

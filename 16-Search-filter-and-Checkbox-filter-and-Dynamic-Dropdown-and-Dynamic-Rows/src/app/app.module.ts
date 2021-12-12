@@ -11,6 +11,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { HttpClientModule } from '@angular/common/http';
 import { DynamicDropdownComponent } from './components/dynamic-dropdown/dynamic-dropdown.component';
 import { DynamicRowsComponent } from './components/dynamic-rows/dynamic-rows.component';
+import { DropdownSelectComponent } from './components/dropdown-select/dropdown-select.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { DynamicRowsComponent } from './components/dynamic-rows/dynamic-rows.com
     SearchFilterComponent,
     DynamicDropdownComponent,
     DynamicRowsComponent,
+    DropdownSelectComponent,
   ],
   imports: [
     BrowserModule,

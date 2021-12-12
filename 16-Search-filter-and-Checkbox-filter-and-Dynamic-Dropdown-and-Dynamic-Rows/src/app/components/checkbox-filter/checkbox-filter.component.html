@@ -7,6 +7,7 @@
             class="form-control"
             name="searchFilter"
             [(ngModel)]="searchFilter"
+            (input)="Search()"
             >
 
            <div class="form-group">
@@ -20,7 +21,7 @@
                   (change)="checkFilter($event)"
                   >
               </div>
-            <div class="form-check" *ngFor="let opt of options | filter : searchFilter ;">
+            <div class="form-check" *ngFor="let opt of SearchData ;">
               <label class="form-check-label" for="tag{{opt.value}}">
                 <input
                   class="form-check-input"

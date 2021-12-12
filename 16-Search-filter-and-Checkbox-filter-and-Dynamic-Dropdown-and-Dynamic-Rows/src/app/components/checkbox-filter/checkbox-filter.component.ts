@@ -42,10 +42,12 @@ export class CheckboxFilterComponent implements OnInit {
 
   ]
   public searchFilter:string = ''; // Search Filter
-  
+  public SearchData:any[]=[];
   constructor() { }
 
   ngOnInit(): void {
+    this.SearchData = this.options;
+    console.log(this.SearchData)
   }
 
   public checkFilter($event:any){
@@ -69,5 +71,10 @@ export class CheckboxFilterComponent implements OnInit {
     console.log(this.options)
   }
   
+  public Search(){
+      this.SearchData = this.options.filter(res => res.name.toLocaleLowerCase().match(this.searchFilter.toLocaleLowerCase()));
+      //this.SearchData = this.contacts.filter(res => res.name.first.toLocaleLowerCase().match(this.searchFilter.toLocaleLowerCase()))
+
+  }
 
 }
