@@ -8,11 +8,16 @@ import { StatesService } from './services/states.service';
 })
 export class DynamicDropdownComponent implements OnInit {
    
-  //Method 1
+  ///////////////////////////////////////////// Method 1 ///////////////////////////////////////////////////
+  public countrylist :any;
   public state:any;  
   public city:any; 
+  state1:any;//Take Emty Array
+  public city1:any; // Take Emty Array
+  selectedCountry1:string ="Choose Country"
+  selectedState1 :string ="Choose State"
 
-  ///Method 2
+  ////////////////////////////////////////////// Method 2 //////////////////////////////////////////////////////////////
   public country:string[]= ['India','Usa', 'Uk','Newzeeland','Canada'];
   public list:string[]=[];
   public india:string[]= ['Hyderabad', 'karimnagar','warangal']
@@ -22,121 +27,140 @@ export class DynamicDropdownComponent implements OnInit {
   public canada:string[]= ['canadian', 'area51']
 
 
-     // Method 3
+  ///////////////////////////////////////////// Method 3 ////////////////////////////////////////////////////////////////////
 	Countries:any = [
-		{ name: 'Canada', country_id :1,
+          { name: 'Canada', country_id :1,
 
-     states: [ 
-       {name: 'Alberta', id :1, country_code :1,
-     cities: [{
-       name : 'Jasper', sno: 1,  id :1
-     },{
-      name : 'Delta', sno :2, id :2
-    }
-    ]},
-     {name: 'British Columbia', id :2, country_code :1,
-     cities: [{
-       name : 'Hope', sno :1, id :1
-     },{
-      name : 'Nelson', sno :2, id :2
-    }]}
-     ] }
-     ,
-		{ name: 'UK', country_id :2,
-
-     states: [ {name: 'Dorset', id :1, country_code :2,
-      cities: [{
-        name : 'East Dorset', sno:1, id :1, 
-      }]},
-      {name: 'Durham', id :2, country_code :2,
-      cities: [{
-        name : 'Lewes', sno: 2, id :2, 
-      }]} ] },
-
-		{ name: 'USA', country_id: 3,
-    
-    states: [{
-      name: 'California',  id: 1, country_code :3,
-        cities: [{
-          name : 'Los Angeles', sno :1, id :3
-        },
-        {
-          name : 'New York', sno:2, id :3
-        }]
-      },
-      {
-        name: 'Texas',  id: 2, country_code :3,
+          states: [ 
+            {name: 'Alberta', id :1, country_code :1,
           cities: [{
-            name : 'Houston', sno:1, id :3
+            name : 'Jasper', sno: 1,  id :1
           },{
-            name : 'Washington', sno:2, id :3
-          }]
-        },
-    ] },
+            name : 'Delta', sno :2, id :2
+          }
+          ]},
+          {name: 'British Columbia', id :2, country_code :1,
+          cities: [{
+            name : 'Hope', sno :1, id :1
+          },{
+            name : 'Nelson', sno :2, id :2
+          }]}
+          ] }
+          ,
+          { name: 'UK', country_id :2,
+
+          states: [ {name: 'Dorset', id :1, country_code :2,
+            cities: [{
+              name : 'East Dorset', sno:1, id :1, 
+            }]},
+            {name: 'Durham', id :2, country_code :2,
+            cities: [{
+              name : 'Lewes', sno: 2, id :2, 
+            }]} ] },
+
+            { name: 'USA', country_id: 3,
+            
+            states: [{
+              name: 'California',  id: 1, country_code :3,
+                cities: [{
+                  name : 'Los Angeles', sno :1, id :3
+                },
+                {
+                  name : 'New York', sno:2, id :3
+                }]
+              },
+              {
+                name: 'Texas',  id: 2, country_code :3,
+                  cities: [{
+                    name : 'Houston', sno:1, id :3
+                  },{
+                    name : 'Washington', sno:2, id :3
+                  }]
+                },
+            ] },
       
-		{ name: 'Mexico', country_id :4,
+            { name: 'Mexico', country_id :4,
 
-     states: [{
-       name: 'Oaxaca', id: 1, country_code :4,
-      cities: [{
-        name : 'Oaxaca de Juarez',sno:1, id : 4,
-      },{
-        name : 'Queretaro', sno :2, id : 4,
-      }]},
+            states: [{
+              name: 'Oaxaca', id: 1, country_code :4,
+              cities: [{
+                name : 'Oaxaca de Juarez',sno:1, id : 4,
+              },{
+                name : 'Queretaro', sno :2, id : 4,
+              }]},
 
-      {name: 'Puebla', id: 2, country_code :4,
-      cities: [{
-        name : 'Chetumal',sno :1, id : 4, 
-      },{
-        name : 'Queretaro',ano :2, id : 4,
-      }]}
-     ] },
+              {name: 'Puebla', id: 2, country_code :4,
+              cities: [{
+                name : 'Chetumal',sno :1, id : 4, 
+              },{
+                name : 'Queretaro',ano :2, id : 4,
+              }]}
+            ] },
 
-		{ name: 'India', country_id: 5,
+            { name: 'India', country_id: 5,
 
-    states: [
-      {name: 'Telanagana', id: 1, country_code :5,
-    cities: [{
-      name: 'Karimnagar', sno :1, id :5,
-    },{
-      name: 'Hyderabad', sno :2, id :5,
-    }]},
-    {name: 'Andhrapradesh', id: 2, country_code :5,
-    cities: [{
-      name: 'Vizag', sno :1, id :5,
-    }, {
-      name: 'Karnool', sno :2, id :5,
-    }]},
-  ] },
+            states: [
+              {name: 'Telanagana', id: 1, country_code :5,
+            cities: [{
+              name: 'Karimnagar', sno :1, id :5,
+            },{
+              name: 'Hyderabad', sno :2, id :5,
+            }]},
+            {name: 'Andhrapradesh', id: 2, country_code :5,
+            cities: [{
+              name: 'Vizag', sno :1, id :5,
+            }, {
+              name: 'Karnool', sno :2, id :5,
+            }]},
+          ] },
 	];
   
-	states:any = []; 
-	cities: any= []; 
-  selectedProperty:string ="Choose Country"
-  selectedState :string ="Choose State"
+	states:any = [];  //// Method 3
+	cities: any= []; //// Method 3
+  selectedProperty:string ="Choose Country"; //// Method 3
+  selectedState :string ="Choose State"; //// Method 3
 
   constructor(private statesService : StatesService) { }
 
   ngOnInit(): void {
-    this.state = this.statesService.state();
+    this.countrylist = this.statesService.country(); // Method 1 Functionality
+    console.log(this.countrylist)
+    this.state = this.statesService.state(); // Method 1 Functionality
     console.log(this.state)
-    this.city = this.statesService.city();
+    this.city = this.statesService.city(); // Method 1 Functionality
     console.log(this.city)
   }
 
+  /////////////////////// Method 1 Functionality //////////////////////////////////////
+
+  public selectCountry(countrylist:any){
+    console.log(countrylist.target.value)
+   if(countrylist.target.value){
+    this.state1 = this.statesService.state().filter(e=> e.country_code == countrylist.target.value); 
+    console.log(this.state1);
+    this.city1 = []
+   } else if(!countrylist && this.selectedCountry1 ==="Choose Country"){
+        this.countrylist =[];
+        this.state1 = [];
+        this.city1 = []
+   } else{
+     this.state1=[];
+     this.city1 = [];
+     return
+   }
+  }
   public selectState(state:any){
-      console.log(state.target.value)
-    this.city = this.statesService.city().filter(e=> e.countryid == state.target.value); 
-    console.log(this.city)
+    console.log(state.target.value)
+   if(state.target.value){
+    this.city1 = this.statesService.city().filter(e=> e.countryid == state.target.value); 
+    console.log(this.city1)
+   }else{
+     this.city1=[]
+   }
     //console.log(this.city)
   }
 
-  // public selectCity(city:any){
-  //   console.log(city.target.value)
-  //   this.state = this.statesService.state().filter(e=> e.id == city.target.value); 
-  //   console.log(this.state);
-  //     this.state.get('state').setValue(this.state);
-  // }
+  //////////////////////////// Method 2 Functionality /////////////////////////////////////////
 
   public updateState(e:any){
     console.log(e.target.value)
@@ -167,6 +191,9 @@ export class DynamicDropdownComponent implements OnInit {
           break;
     }
   }
+
+
+   ////////////////////////////// Method 3 Functionality /////////////////////////////////////////////////////////////////////////////
 
   //changeCountry(country) { 
 	changeCountry(country: any) { 
