@@ -1,0 +1,265 @@
+<div class="container">
+    <div class="row justify-content-sm-center">
+      <div class="col-sm-6  round pb-3">
+        <h1 class="text-center pt-3 text-secondary">Reactive Form Builder Validation</h1>
+        <form [formGroup]="registerForm">
+          <div class="form-group">
+              <pre>{{registerForm.value.name}}</pre>
+            <label class="col-form-label">Name</label>
+            <input formControlName="name" 
+            type="text" placeholder="Name" 
+            class="form-control " 
+            [class.is-invalid]="registerForm.get('name').touched && registerForm.get('name').invalid"
+            [class.is-valid]="registerForm.get('name').touched && registerForm.get('name').valid"
+            />
+            <span *ngIf="registerForm.get('name').touched && registerForm.get('name').hasError('required')" class="form-text">Please Enter Name</span>
+            <!-- <span *ngIf="registerForm.get('name').touched && registerForm.get('name').hasError('name')" class="form-text">Please Enter Proper Name</span> -->
+            <span *ngIf="registerForm.get('name').touched && registerForm.get('name').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+            <span *ngIf="registerForm.get('name').touched && registerForm.get('name').valid" class="form-text">Looks Good</span>
+
+
+            <span *ngIf="registerForm.get('name').touched && registerForm.get('name').hasError('forbiddenName')" class="form-text">{{registerForm.value.name}} User Name is Not Allowed</span>
+
+          
+          </div>
+         
+          <div class="form-group">
+            <label class="col-form-label">Email</label>
+            <input formControlName="email"
+             type="text" placeholder="Email" class="form-control"
+            [class.is-invalid]="registerForm.get('email').touched && registerForm.get('email').invalid"
+            [class.is-valid]="registerForm.get('email').touched && registerForm.get('email').valid"
+            />
+            <small *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('required')" class="text-danger"
+              >Please Enter Email</small>
+              <small *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('email')" class="text-danger"
+              >Email is Required</small>
+              <!-- <span *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('minlength')" class="form-text">Minimum 5 Characters</span> -->
+              <!-- <span *ngIf="registerForm.get('email').touched && registerForm.get('email').valid" class="form-text">Looks Good</span> -->
+              <span *ngIf="registerForm.get('email').touched && registerForm.get('email').valid" class="form-text">Looks Good</span>
+  
+  
+          </div>
+          <div class="form-group">
+                <label class="col-form-label">Password</label>
+                <input type="password" class="form-control"
+                [type]="inputType"
+                [class.is-invalid]="registerForm.get('password').touched && registerForm.get('password').invalid"
+                [class.is-valid]="registerForm.get('password').touched && registerForm.get('password').valid"
+                formControlName="password"
+                placeholder="Password">
+  
+                <small *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('required')" class="text-danger"
+                >Please Enter Password</small>
+                <small *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('pattern')" class="text-danger"
+                >At least 8 characters in length,1 Lowercase,1 Uppercase, 1 Number,1 Special character
+                
+                </small>
+                <span *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('minlength')" class="form-text">Minimum 8 Characters</span>
+                <!-- <span *ngIf="registerForm.get('email').touched && registerForm.get('email').valid" class="form-text">Looks Good</span> -->
+                <span *ngIf="registerForm.get('password').touched && registerForm.get('password').valid" class="form-text">Looks Good</span>
+  
+          </div>
+  
+          <div class="form-check">
+            <input (change)="showPassword()"
+            formControlName="showPassword"
+             class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">Show Password</label>
+          </div>
+  
+          <div class="form-group">
+            <label class="col-form-label">Conirm Password</label>
+            <input type="password" 
+            [class.is-invalid]="registerForm.get('conformpassword').touched && registerForm.get('conformpassword').invalid || !validatePassord()"
+            [class.is-valid]="registerForm.get('conformpassword').touched && registerForm.get('conformpassword').valid && validatePassord()"
+            formControlName="conformpassword"
+            class="form-control" placeholder="Confirm Password">
+            <small *ngIf="registerForm.get('conformpassword').touched && registerForm.get('conformpassword').hasError('required')" class="text-danger"
+            >Please Enter Conirm Password</small>
+            <small *ngIf="registerForm.get('conformpassword').touched && !validatePassord()" class="text-danger">
+                Conirm Password doesn't matched</small
+            >
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Phone</label>
+            <input formControlName="phone" 
+            onKeyPress="if(this.value.length==10) return false;"
+            type="number"maxlength="10" placeholder="Mobile Number" class="form-control" 
+            [class.is-invalid]="registerForm.get('phone').touched && registerForm.get('phone').invalid"
+            [class.is-valid]="registerForm.get('phone').touched && registerForm.get('phone').valid"
+            />
+            <small *ngIf="registerForm.get('phone').touched && registerForm.get('phone').invalid" class="text-danger"
+              >Phone no is Required(minimum length 10,numbers are only
+              allowed)</small
+            >
+            <small *ngIf="registerForm.get('phone').touched && registerForm.get('phone').hasError('pattern')" class="text-danger"
+            > Starts with 6,7,8,9 Indian Number
+            
+            </small>
+            
+          </div>
+  
+          <div class="form-group">
+            <label class="col-form-label">Select Date</label>
+            <input formControlName="date" 
+            id="date" type="date"  class="form-control" [max]="getToday()"
+            [class.is-invalid]="registerForm.get('date').touched && registerForm.get('date').invalid"
+            [class.is-valid]="registerForm.get('date').touched && registerForm.get('date').valid"
+            />
+            <small *ngIf="registerForm.get('date').touched && registerForm.get('date').invalid" class="text-danger">Date is Required</small
+             >
+            
+       </div>
+  
+          <div class="form-group">
+            <label class="col-form-label">Select Cource</label>
+            <select
+              formControlName="course"
+              [class.is-invalid]="registerForm.get('course').touched && registerForm.get('course').invalid"
+              [class.is-valid]="registerForm.get('course').touched && registerForm.get('course').valid"
+              class="form-control">
+              <option value="">Choose</option>
+              <option *ngFor="let course of courses" [value]="course">{{course}}</option>
+            </select>
+            <div *ngIf="registerForm.get('course').touched && registerForm.get('course').invalid">
+              <small class="text-danger">Select a Course</small>
+            </div>
+            <small *ngIf="registerForm.get('course').touched && registerForm.get('course').valid" class="text-success">
+              Looks Good
+            </small>
+          </div>
+  
+          <div class="form-group">
+            <label class="col-form-label">Address</label>
+            <textarea formControlName="address"
+             class="form-control" placeholder="Enter Your Perminent Address"
+            [class.is-invalid]="registerForm.get('address').touched && registerForm.get('address').invalid"
+            [class.is-valid]="registerForm.get('address').touched && registerForm.get('address').valid" 
+            ></textarea>
+            <!-- (change)="everykeyord($event)" -->
+  
+            <small *ngIf="registerForm.get('address').touched && registerForm.get('address').invalid" class="text-danger">
+              Address is Required(minimum length 20)</small
+            >
+          </div>
+  
+  
+          <div class="form-group">
+            <input type="checkbox" (change)="remember($event)" formControlName="AdreessCheckbox">
+            &nbsp;<label class="col-form-label"> Remember</label>
+  
+         </div>
+  
+         <div class="form-group">
+          <label class="col-form-label">Address 2</label>
+          <textarea 
+          formControlName="address2"
+          class="form-control" placeholder="Enter Your Perminent Address"
+         
+          ></textarea>
+          <small *ngIf="registerForm.get('address').touched && registerForm.get('address').invalid" class="text-danger">
+            Address is Required(minimum length 20)</small
+          >
+      
+        </div>
+  
+          <div class="form-group">
+            <input type="radio" value="male" formControlName="gender"  > Male
+            <input type="radio" value="female"  formControlName="gender"  > Female
+  
+            <small *ngIf="registerForm.get('gender').touched && registerForm.get('gender').invalid" class="text-danger">
+              Gender required. </small
+            >
+          </div>
+
+                            <!-- <div class="form-group">
+                                <label for="label" class="col-form-label">Extra</label>
+                                <input type="text" formControlName="extra" class="form-control"
+                                [class.is-invalid]="registerForm.get('extra').touched && registerForm.get('extra').invalid"
+                                [class.is-valid]="registerForm.get('extra').touched && registerForm.get('extra').valid"
+                                >
+                                <small *ngIf="registerForm.get('extra').touched && registerForm.get('extra').invalid" class="text-danger">
+                                    Please Fill Extra </small>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" formControlName="extracheckbox">
+                                &nbsp;<label class="col-form-label"> Subscribe me</label>
+                            </div> -->
+
+  
+          <!-- {{isTCAccepted | json}} -->
+          <div class="form-group">
+             <input type="checkbox" formControlName="isTCAccepted"
+             [class.is-invalid]="registerForm.get('isTCAccepted').touched && registerForm.get('isTCAccepted').invalid"
+             [class.is-valid]="registerForm.get('isTCAccepted').touched && registerForm.get('isTCAccepted').valid"
+             >
+             &nbsp;<label class="col-form-label"> Accept</label>
+  
+             <br><small *ngIf="registerForm.get('isTCAccepted').touched && registerForm.get('isTCAccepted').invalid" class="text-danger">
+             Please Accept Terms & Conditions</small
+            >
+  
+          </div>
+  
+  
+          <div formGroupName="country">
+            <div class="form-group">
+              <label class="col-form-label">Country Name</label>
+              <input formControlName="countryName" 
+              type="text" placeholder="Country Name" 
+              class="form-control " 
+              [class.is-invalid]="registerForm.get('country.countryName').touched && registerForm.get('country.countryName').invalid"
+              [class.is-valid]="registerForm.get('country.countryName').touched && registerForm.get('country.countryName').valid"
+             
+              />
+            <span *ngIf="registerForm.get('country.countryName').touched && registerForm.get('country.countryName').hasError('required')" class="form-text">Please Enter Country Name</span>
+            <span *ngIf="registerForm.get('country.countryName').touched && registerForm.get('country.countryName').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+            <span *ngIf="registerForm.get('country.countryName').touched && registerForm.get('country.countryName').valid" class="form-text">Looks Good</span>
+              
+            </div>
+  
+            <div class="form-group">
+              <label class="col-form-label">State Name</label>
+              <input formControlName="stateName" 
+              type="text" placeholder="State Name" 
+              class="form-control " 
+              [class.is-invalid]="registerForm.get('country.stateName').touched && registerForm.get('country.stateName').invalid"
+              [class.is-valid]="registerForm.get('country.stateName').touched && registerForm.get('country.stateName').valid"
+             
+              />
+            <span *ngIf="registerForm.get('country.stateName').touched && registerForm.get('country.stateName').hasError('required')" class="form-text">Please Enter State Name</span>
+            <span *ngIf="registerForm.get('country.stateName').touched && registerForm.get('country.stateName').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+            <span *ngIf="registerForm.get('country.stateName').touched && registerForm.get('country.stateName').valid" class="form-text">Looks Good</span>
+              
+            </div>
+  
+            <div class="form-group">
+              <label class="col-form-label">City Name</label>
+              <input formControlName="cityName" 
+              type="text" placeholder="City Name" 
+              class="form-control " 
+              [class.is-invalid]="registerForm.get('country.cityName').touched && registerForm.get('country.cityName').invalid"
+              [class.is-valid]="registerForm.get('country.cityName').touched && registerForm.get('country.cityName').valid"
+             
+              />
+            <span *ngIf="registerForm.get('country.cityName').touched && registerForm.get('country.cityName').hasError('required')" class="form-text">Please Enter City Name</span>
+            <span *ngIf="registerForm.get('country.cityName').touched && registerForm.get('country.cityName').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+            <span *ngIf="registerForm.get('country.cityName').touched && registerForm.get('country.cityName').valid" class="form-text">Looks Good</span>
+              
+            </div>
+          </div>
+  
+  
+          <button
+         
+            (click)="clicksub()"
+            type="button"
+            class="btn btn-primary mt-4"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>

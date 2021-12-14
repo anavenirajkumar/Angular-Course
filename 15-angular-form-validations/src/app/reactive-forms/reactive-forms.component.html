@@ -181,6 +181,56 @@
           >
 
         </div>
+
+
+        <div formGroupName="country">
+          <div class="form-group">
+            <label class="col-form-label">Country Name</label>
+            <input formControlName="countryName" 
+            type="text" placeholder="Country Name" 
+            class="form-control " 
+            [class.is-invalid]="exform.get('country.countryName').touched && exform.get('country.countryName').invalid"
+            [class.is-valid]="exform.get('country.countryName').touched && exform.get('country.countryName').valid"
+           
+            />
+          <span *ngIf="exform.get('country.countryName').touched && exform.get('country.countryName').hasError('required')" class="form-text">Please Enter Country Name</span>
+          <span *ngIf="exform.get('country.countryName').touched && exform.get('country.countryName').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+          <span *ngIf="exform.get('country.countryName').touched && exform.get('country.countryName').valid" class="form-text">Looks Good</span>
+            
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label">State Name</label>
+            <input formControlName="stateName" 
+            type="text" placeholder="State Name" 
+            class="form-control " 
+            [class.is-invalid]="exform.get('country.stateName').touched && exform.get('country.stateName').invalid"
+            [class.is-valid]="exform.get('country.stateName').touched && exform.get('country.stateName').valid"
+           
+            />
+          <span *ngIf="exform.get('country.stateName').touched && exform.get('country.stateName').hasError('required')" class="form-text">Please Enter State Name</span>
+          <span *ngIf="exform.get('country.stateName').touched && exform.get('country.stateName').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+          <span *ngIf="exform.get('country.stateName').touched && exform.get('country.stateName').valid" class="form-text">Looks Good</span>
+            
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label">City Name</label>
+            <input formControlName="cityName" 
+            type="text" placeholder="City Name" 
+            class="form-control " 
+            [class.is-invalid]="exform.get('country.cityName').touched && exform.get('country.cityName').invalid"
+            [class.is-valid]="exform.get('country.cityName').touched && exform.get('country.cityName').valid"
+           
+            />
+          <span *ngIf="exform.get('country.cityName').touched && exform.get('country.cityName').hasError('required')" class="form-text">Please Enter City Name</span>
+          <span *ngIf="exform.get('country.cityName').touched && exform.get('country.cityName').hasError('minlength')" class="form-text">Minimum 5 Characters</span>
+          <span *ngIf="exform.get('country.cityName').touched && exform.get('country.cityName').valid" class="form-text">Looks Good</span>
+            
+          </div>
+        </div>
+
+
         <button
        
           (click)="clicksub()"

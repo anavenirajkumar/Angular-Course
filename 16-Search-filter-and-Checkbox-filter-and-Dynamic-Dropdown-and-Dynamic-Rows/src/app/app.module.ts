@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { DynamicDropdownComponent } from './components/dynamic-dropdown/dynamic-dropdown.component';
 import { DynamicRowsComponent } from './components/dynamic-rows/dynamic-rows.component';
 import { DropdownSelectComponent } from './components/dropdown-select/dropdown-select.component';
+import { ReactiveFormBuilderComponent } from './components/reactive-form-builder/reactive-form-builder.component';
+import { ReactiveFormsComponent } from './components/reactive-forms/reactive-forms.component';
+import { CheckboxFilterTwoComponent } from './components/checkbox-filter-two/checkbox-filter-two.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,9 @@ import { DropdownSelectComponent } from './components/dropdown-select/dropdown-s
     DynamicDropdownComponent,
     DynamicRowsComponent,
     DropdownSelectComponent,
+    ReactiveFormBuilderComponent,
+    ReactiveFormsComponent,
+    CheckboxFilterTwoComponent,
   ],
   imports: [
     BrowserModule,
